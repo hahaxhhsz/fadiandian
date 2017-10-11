@@ -1,0 +1,77 @@
+用户操作接口文档
+作者：王晨超
+创建时间：2017-10-11 22:36
+更新时间：2017-10-11 13:36
+1.获取所有用户信息（一般只用于debug）
+url: http://1u8z437354.imwork.net:6565/userAction/getAllUsersInfo
+•	args:
+o	null
+•	return:
+{
+    "state": "结果码 0-操作失败 1-操作成功",
+    "data": { 
+        "userList": [
+            {
+                "userId": "用户Id",
+                "userName": "用户名",
+                "userPassword": "用户密码",
+                "created": "注册时间",
+                "lastLoginTime": "上次登录时间",
+                "state": "账号状态 1-在线 0-离线"
+            }
+        ]
+    }
+}
+2.获取单个用户信息
+url: http://1u8z437354.imwork.net:6565/userAction/getUserInfo
+•	args:
+o	String id “玩家Id”
+•	return:
+{
+    "state": "结果码 0-操作失败 1-操作成功",
+    "data": { 
+            "id": "用户Id",
+            "userName": "用户名",
+            "userPassword": "用户密码",
+            "created": "注册时间",
+            "lastLoginTime": "上次登录时间",
+            "state": "账号状态 1-在线 0-离线"    
+    }
+}
+3.用户注册（不允许注册时出现重复用户名）
+url: http://1u8z437354.imwork.net:6565/userAction/registered
+•	
+•	args:
+o	String userName “用户名”
+o	String userPassword “用户密码”
+•	return:
+{
+    "state": "结果码 0-操作失败 1-操作成功",
+    "msg": "提示消息"
+}
+4.用户登录（提示：目前只支持同一账号同时只能在线一个用户, 若不登出则始终无法再次登录,msg和useId只会返回一种）
+•	url: http://1u8z437354.imwork.net:6565/userAction/login
+•	args:
+o	String userName “用户名”
+o	String userPassword “用户密码”
+•	return:
+{
+    "state": "结果码 0-操作失败 1-操作成功",
+    "data":
+    {
+        "userId": "若登录成功，返回id"
+	"msg": "若登录失败，返回msg"
+    }
+}
+5.用户登出（提示：用户登录后只有在登出的情况下才能再次登录，用户也只有在登录后才能登出）
+•	url: http://1u8z437354.imwork.net:6565/userAction/logout
+•	args:
+o	String id “玩家Id”
+•	return:
+{
+    "state": "结果码 0-操作失败 1-操作成功",
+    "data":
+    {
+	"msg": "提示信息"
+    }
+}   
