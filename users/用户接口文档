@@ -22,7 +22,7 @@ o	null
         ]
     }
 }
-2.获取单个用户信息
+2.获取单个用户信息(msg和useInfo只会返回一种,成功useInfo，失败msg)
 url: http://1u8z437354.imwork.net:6565/userAction/getUserInfo
 •	args:
 o	String id “玩家Id”
@@ -30,12 +30,15 @@ o	String id “玩家Id”
 {
     "state": "结果码 0-操作失败 1-操作成功",
     "data": { 
+    	"userInfo":{
             "id": "用户Id",
             "userName": "用户名",
             "userPassword": "用户密码",
             "created": "注册时间",
             "lastLoginTime": "上次登录时间",
             "state": "账号状态 1-在线 0-离线"    
+	    }
+	  "msg":"提示信息"
     }
 }
 3.用户注册（不允许注册时出现重复用户名）
